@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br>
+<div class="mt-4 container">
+ <h1 class="h3 mb-3 font-weight-normal">Informations  <i class="fa-solid fa-window-maximize"></i> </h1>
+
+    <div class="col">    
+              <div class="card bg-light mb-3" style="min-width: 20rem;">
+                      <div class="card-header"> 
+                           Informations détaillées de l'application
+                      </div>
+                      <div class="card-body">
+                         <h6 class="card-title">{{application.nom}} <i class="fa-solid fa-window-maximize"></i> </h6> 
+                          
+                              <p class="card-text">Informations : </p>
+                              <p class="card-text"> Editeur {{application.editeur}} </p>
+                               <p class="card-text">Fonction {{application.fonction}} </p>
+                                <p class="card-text">Cible utilisateur {{application.cible}} </p>
+                                   
+                                  <p class="card-text">Documents  
+                                  {% for document in documents %}
+                                   <a href="{{ asset('documents/' ~ document.name) }}">{{ document.name }}</a>
+                                    {% endfor %}
+                                    </p>
+     
+                      </div>
+                </div>
+            </div>
+            
+
+  
+{% endblock %}

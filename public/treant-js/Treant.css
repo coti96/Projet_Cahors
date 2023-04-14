@@ -1,0 +1,56 @@
+.Treant > .node,
+.Treant > .pseudo { position: absolute; display: block; visibility: hidden; }
+.Treant.Treant-loaded .node,
+.Treant.Treant-loaded .pseudo { visibility: visible; }
+.Treant > .pseudo { width: 0; height: 0; border: none; padding: 0; }
+.Treant .collapse-switch { width: 3px; height: 3px; display: block; border: 3px solid rgba(10, 13, 188, 0.451); position: relative; cursor: pointer; }
+.Treant .collapsed .collapse-switch { background-color: #0010ea; }
+.Treant > .node img {	border: none; float: left; }
+/* Styles pour l'arbre Treant */
+.Treant {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+}
+.container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+
+}
+
+/* Styles pour les noeuds */
+.Treant .nodeExample1 {
+    background-color: #F8F8F8;
+    border: 1px solid #999999;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333333;
+    box-shadow: 2px 2px 2px #888888;
+}
+
+/* Styles pour les liens */
+.Treant .nodeExample1 .node-step {
+    stroke: #999999;
+    stroke-width: 1px;
+}
+
+/* Styles pour le texte dans les noeuds */
+.Treant .nodeExample1 .node-name {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Styles pour les liens entre les noeuds */
+.Treant .nodeExample1 .node-desc {
+    text-align: center;
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 12px;
+}

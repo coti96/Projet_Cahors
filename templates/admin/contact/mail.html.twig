@@ -1,0 +1,21 @@
+{% extends "base.html.twig"%}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+
+
+
+
+{% block title %} 
+Envoyer un mail
+{% endblock %}
+
+{% block body %}
+<br><div class="container mt-4">
+<h1 class="h3 mb-3 font-weight-normal">Envoyer un mail </h1>
+
+<p class="text-info">Envoyer un mail</p>
+
+{{ form(form) }}
+
+</div>
+{% endblock %}

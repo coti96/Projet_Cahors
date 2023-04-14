@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+
+
+{% block title %}Modifier un rendez-vous{% endblock %}
+
+{% block body %}
+
+
+<div class="container mt-4"> 
+
+<h3>Modifier un rendez-vous</h3>
+<p class="text-info">Modifier un rendez-vous dans l'agenda</p>
+
+
+
+  <form method="post" action="{{ path('app_agenda_delete', {'id': agenda.id}) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ agenda.id) }}">
+    <button class="submit">Supprimer ce rendez-vous</button></form>
+   
+<br>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+ <a href="{{ path('app_agenda_index') }}">Retour à l'agenda</a>
+  
+</div>
+
+   
+
+   
+{% endblock %}

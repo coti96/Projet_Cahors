@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
+{% block title %}Enregistrer un contact {% endblock %}
+
+{% block body %}
+   
+    <section class="container my-3">
+<div class="row">
+<div class="col">
+ <h1 class="h3 mb-3 font-weight-normal">Enregistrer un contact</h1>
+
+ <fieldset>
+    <legend> Informations </legend>
+  {{ form_start(contactForm)}}
+
+{{ form_widget(contactForm)}}
+
+{{ form_end(contactForm)}}
+    </section>
+</div>
+</div>
+{% endblock %}
+

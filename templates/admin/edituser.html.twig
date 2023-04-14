@@ -1,0 +1,18 @@
+{% extends "base.html.twig"%}
+
+{% form_theme userForm 'bootstrap_4_layout.html.twig' %}
+
+
+{% block title %} 
+Modifier un utilisateur
+{% endblock %}
+
+{% block body %}
+<h1 class="h3 mb-3 font-weight-normal">Modifier un utilisateur</h1>
+<div class="container mt-4">
+<p class="text-info">Modifier les informations d'un utilisateur</p>
+
+{{ form(userForm) }}
+
+</div>
+{% endblock %}

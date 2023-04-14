@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Enregistrer un utilisateur {% endblock %}
+
+{% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
+
+
+{% block body %}
+   
+    <section class="container my-3">
+<div class="row">
+<div class="col">
+ <h1 class="h3 mb-3 font-weight-normal">Enregistrer un utilisateur</h1>
+
+ <fieldset>
+    <legend> Informations </legend>
+    {{ form_start(registrationForm) }}
+       
+
+    {{ form_end(registrationForm) }}
+    </section>
+</div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<br><div class="container">
+<h4 style="text-align:center">Dépendances fonctionnelles <i class="fa-solid fa-diagram-project"></i> </h4>
+<div class="chart" id="basic-example"></div>
+<script src="treant-js/vendor/raphael.js"></script>
+<script src="treant-js/Treant.js"></script>
+    <script>const treeArray = {{ tree|json_encode|raw }}</script>
+<script src="treant-js/examples/basic-example/monscript.js"></script></div>
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script> 
+ <script> function startAnimation() {
+      var anime = anime({
+        targets: '#basic-example',
+        translateX: 250,
+        rotate: '1turn',
+        backgroundColor: '#FFF',
+        duration: 800
+      });
+    }
+    window.onload = startAnimation;
+  </script>
+</body>
+</html>
+{% endblock %}

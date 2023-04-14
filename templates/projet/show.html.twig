@@ -1,0 +1,149 @@
+{% extends "base.html.twig"%}
+
+{% block body %} 
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+       <div class="chart-container" style="position: absolute; height:400; width:800">
+            <canvas id="myChart"></canvas>
+         </div>   
+                <script>const nbparefeujs = {{nbparefeu}}; const nbcommutateurjs = {{ nbcommutateur }}; const nbrouteurjs = {{ nbrouteur }};const nbserveurjs = {{ nbserveur }};</script>
+              <script src="\monscriptchartjs.js"></script>
+
+        </div>
+    <div class="col-8">
+          <h3 style="text-align:center"> Serveurs <i class="fa-sharp fa-solid fa-server"></i></h3>
+ <div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col"> Modifier    </th>
+      <th scope="col"> Supprimer  </th>
+      <th scope="col">Nom du Serveur </th>
+ 
+    </tr>
+  </thead>
+  <tbody>
+  
+  
+      {% for serveur in serveurs %} 
+    
+       <tr class="table-active"> 
+       <td> <a href="{{ path ('edit',{id:serveur.id}) }}">  <i class="fa-regular fa-pen-to-square"></i> </a> </td> 
+       <td>  <a href="{{ path ('delete',{id:serveur.id}) }}"><i class="fa-solid fa-trash"></i> </a></td>
+        <td>{{serveur.nom}} <a href="{{ path ('showmoreserveur',{id:serveur.id}) }}"><i class="fa-solid fa-plus"></i> </a> </td>
+     
+    
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</div>
+</br>
+    
+     <h3 style="text-align:center"> Routeurs  <i class="fa-solid fa-network-wired"></i> </h3>
+   
+ <div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col"> Modifier </th>
+      <th scope="col">  Supprimer  </th>
+      <th scope="col">Nom du Routeur </th>
+
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+  
+        {% for routeur in routeurs %} 
+    
+       <tr class="table-active"> 
+       <td> <a href="{{ path ('editRouteur',{id:routeur.id}) }}">  <i class="fa-regular fa-pen-to-square">     </i> </a> </td> 
+       <td>  <a href="{{ path ('deleteRouteur',{id:routeur.id}) }}"><i class="fa-solid fa-trash">   </i> </a></td>
+        <td>{{routeur.nom}} <a href="{{ path ('routeurshowmore',{id:routeur.id}) }}"><i class="fa-solid fa-plus"></i> </a></td>
+    
+    
+    </tr>
+      {% endfor %}
+   
+  </tbody>
+</table>
+  
+ <h3 style="text-align:center"> Commutateur <i class="fa-solid fa-window-maximize"></i>  </h3>
+ <div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col"> Modifier     </th>
+      <th scope="col"> Supprimer  </th>
+      <th scope="col">  Nom du commutateur </th>
+     
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+  
+  
+      {% for commutateur in commutateurs %} 
+    
+       <tr class="table-active"> 
+       <td> <a href="{{ path ('editcommutateur',{id:commutateur.id}) }}">  <i class="fa-regular fa-pen-to-square"></i> </a> </td> 
+       <td>  <a href="{{ path ('deletecommutateur',{id:commutateur.id}) }}"><i class="fa-solid fa-trash"></i> </a></td>
+        <td>{{commutateur.nom}} <a href="{{ path ('commutateurshowmore',{id:commutateur.id}) }}"><i class="fa-solid fa-plus"></i> </a </td>
+      
+    
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</div>
+
+ <h3 style="text-align:center"> Parefeu <i class="fa-solid fa-window-maximize"></i>  </h3>
+ <div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">  Modifier   </th>
+      <th scope="col">  Supprimer </th>
+      <th scope="col"> Nom du Parefeu </th>
+     
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+
+
+  
+      {% for parefeu in parefeux %} 
+    
+       <tr class="table-active"> 
+       <td> <a href="{{ path ('editParefeu',{id:parefeu.id}) }}">  <i class="fa-regular fa-pen-to-square"></i> </a> </td> 
+       <td>  <a href="{{ path ('deleteParefeu',{id:parefeu.id}) }}"><i class="fa-solid fa-trash"></i> </a></td>
+        <td>{{parefeu.nom}}  <a href="{{ path ('parefeushowmore',{id:parefeu.id}) }}"><i class="fa-solid fa-plus"></i> </a>  </td>
+      
+    
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</br>
+  
+</div>    
+  
+  
+    </div>
+  </div>
+
+  
+  
+  
+
+
+
+     
+  {% endblock %}

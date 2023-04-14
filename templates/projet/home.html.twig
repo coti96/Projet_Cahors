@@ -1,0 +1,159 @@
+{% extends "base.html.twig"%}
+ 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    
+ 
+        
+<br>
+      <div class="container">
+            <div class="row">
+              <div class="col"></div>
+              <div class="col"><img src={{ asset('/image/image.png') }}></div>
+              <div class="col"></div>
+            </div> 
+              <div class="row">
+              <div class="col"></div>
+                <div class="col"> <div id="container"></div>
+                  <script src="/scriptprogressbar.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/progressbar.js@1.1.0/dist/progressbar.min.js"></script> 
+                   <h4 class="text-center text-uppercase m-4"> Gestion informatique <small class="text-muted"> Centre Hospitalier de  Cahors </small></h4>
+                </div>
+                <div class="col"></div>
+                </div> 
+              <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                <form class="form-inline">
+                <div class="form-group">
+                {{ form_start(form) }}  {{ form_end(form) }} 
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"> </i>
+                </button>
+               </div> 
+               </form>  
+                </div> 
+                <div class="col"></div> 
+              </div>             
+      </div>
+
+
+</br>
+
+  <div class="container">
+     <div class="row">      
+        
+{% for serveur in serveurs %} 
+             
+          <div class="col">    
+              <div class="card bg-light mb-3" style="min-width: 20rem;">
+                      <div class="card-header"> 
+                          <i class="fa-sharp fa-solid fa-server"></i> Serveur
+                      </div>
+                      <div class="card-body">
+                         <h6 class="card-title">{{serveur.nom}}  </h6> 
+                          <small> 
+                             <a href="{{ path ('showmoreserveur',{id:serveur.id}) }}">Acceder à la fiche détaillée
+                             </a> 
+                          </small> 
+                              <p class="card-text">Informations : {{serveur.marque}} {{serveur.emplacement}} {{serveur.rack}} </p>
+                      </div>
+                </div>
+            </div>
+            
+            
+      
+   {% endfor %}  
+
+{% for routeur in routeurs %}  
+
+      <div class="col">  
+              <div class="card bg-light mb-3" style="min-width: 20rem;">
+                      <div class="card-header"> 
+                        <i class="fa-solid fa-network-wired"></i> Equipement réseau
+                        </div>
+                           <div class="card-body">
+                                <h6 class="card-title">{{routeur.nom}} 
+                                </h6> 
+                                <small> 
+                                  <a href="{{ path ('routeurshowmore',{id:routeur.id}) }}">Acceder à la fiche détaillée
+                                  </a> 
+                                </small> 
+                                <p class="card-text">Informations : {{routeur.marque}} {{routeur.emplacement}} {{routeur.rack}} 
+                                </p>
+                            </div>
+                  </div>
+          </div> 
+ 
+        
+   {% endfor %}  
+  
+{% for commutateur in commutateurs %} 
+
+      <div class="col">  
+              <div class="card bg-light mb-3" style="min-width: 20rem;">
+                      <div class="card-header"> 
+                          <i class="fa-solid fa-window-maximize"></i> commutateur
+                      </div>
+                      <div class="card-body">
+                          <h6 class="card-title">{{commutateur.nom}} </h6> 
+                             <small>  <a href={{ path ('commutateurshowmore',{id: commutateur.id}) }}>Acceder à la fiche détaillée</a>  </small> 
+                              <p class="card-text">Informations : {{commutateur.marque}}  </p>
+                     </div>
+              </div>
+      </div>
+        
+   {% endfor %}  
+
+{% for contact in contacts %} 
+      <div class="col">  
+              <div class="card bg-light mb-3" style="min-width: 20rem;">
+                      <div class="card-header"> <i class="fa-sharp fa-solid fa-user"></i> {{contact.identite}}
+                      </div>
+                      <div class="card-body"><h6 class="card-title">  </h6> 
+                                <small> 
+                                  <a href="#">Acceder à la fiche détaillée </a> 
+                                </small> 
+                                <p class="card-text">Informations : {{contact.fonction}} {{contact.entreprise}} {{contact.mail}}  </p>
+                      </div>
+              </div>
+     </div>
+       
+   {% endfor %}
+   
+   {% for document in documents %}
+  <div class="col">  
+              <div class="card bg-light mb-3" style="min-width: 20rem;">
+                      <div class="card-header"> <i class="fa-solid fa-file"></i>  {{ document.name }}
+                      </div>
+
+                      <div class="card-body"><h6 class="card-title">  Document </h6> 
+                                <small> 
+                                  <a href="{{ asset('documents/' ~ document.name) }}"> Acceder au document </a>
+                                      <p class="card-text"> {{document.description}} <p>
+                                </small> 
+                                
+                      </div>
+              </div>
+     </div>
+
+{% endfor %}
+
+  {% for parefeu in parefeux %}
+  <div class="col">  
+              <div class="card bg-light mb-3" style="min-width: 20rem;">
+                      <div class="card-header"> <i class="fa-solid fa-file"></i>  {{ parefeu.nom }} </div>
+                      <div class="card-body"><h6 class="card-title">  parefeu </h6> 
+                                  <small>  <a href={{ path ('parefeushowmore',{id: parefeu.id}) }}>Acceder à la fiche détaillée</a>  </small> 
+                              <p class="card-text">Informations : {{parefeu.editeur}}  </p>
+                                </small>              
+                      </div>
+              </div>
+     </div>
+
+{% endfor %}
+
+  
+{% endblock %}
+
+

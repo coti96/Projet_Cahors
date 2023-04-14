@@ -1,0 +1,28 @@
+{% extends "base.html.twig"%}
+{% form_theme formRouteur 'bootstrap_4_layout.html.twig' %}
+
+
+
+{%block title %} 
+{% if editMode %} Modifier 
+{% else %} Ajouter 
+{% endif %}
+un equipement reseau
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+</br><h3> {% if editMode %} Modifier 
+{% else %}  Ajouter 
+{% endif %} un equipement reseau </h3> 
+
+<p class="text-info">Ajouter un equipement reseau dans la base de données.</p>
+
+{{ form_start(formRouteur)}}
+
+{{ form_widget(formRouteur)}}
+
+{{ form_end(formRouteur)}}
+
+</div>
+{% endblock %}

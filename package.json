@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@fullcalendar/core": "^6.0.3",
+    "bootstrap": "^5.2.3",
+    "treant-js": "^1.0.1"
+  }
+}

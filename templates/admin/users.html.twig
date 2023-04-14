@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+<script src="https://kit.fontawesome.com/70f98bf25c.js" crossorigin="anonymous"></script>
+<br>
+ <h3 style="text-align:center"> Liste des utilisateurs </h3>
+ <br>
+ <div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">E-mail </th>
+
+      <th scope="col"> Nom Prenom </th>
+     
+      <th scope="col"> Role </th>
+
+      <th scope="col"> Fonction </th>
+
+     <th scope="col"> Modifier    </th>
+
+      <th scope="col">  Supprimer  </th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+  
+  
+      {% for user in users %} 
+    
+       <tr class="table-active"> 
+    
+        <td>{{user.username}}</td>
+        
+        <td> {{user.identite}}</td>
+
+       <td> {% for role in user.roles %}
+            
+              {% if role == "ROLE_USER" %} 
+                 Utilisateur
+                  {% elseif role == "ROLE_EDITOR" %}
+                    Editeur
+                      {% elseif role == "ROLE_ADMIN" %}
+                       Administrateur
+                {% endif %} 
+            {% endfor %}
+        </td>
+
+       <td> {{user.fonction}}</td>
+    <td> <a href={{path('editUser',{'id':user.id})}}> <i class="fa-regular fa-pen-to-square">  </i>  </a>    </td> 
+    <td> <a href={{path('deleteUser',{'id':user.id})}}> <i class="fa-solid fa-trash"> </i> </a>    </td>
+    </tr>
+
+    {% else %} <p> Aucun utilisateur inscrit </p>
+      {% endfor %}
+
+      
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task index{% endblock %}
+
+{% block javascript %}
+<script src="https://unpkg.com/react@17.0.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.development.js"></script>
+
+
+
+{% endblock %}
+
+{% block body %}
+    <h1>Task index</h1>
+ <div id="root"></div>
+ <script type=module src="/react/app.js"></script>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fait</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.completed }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>
+                    <a href="{{ path('app_task_show', {'id': task.id}) }}">show</a>
+                    <a href="{{ path('app_task_edit', {'id': task.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_task_new') }}">Create new</a>
+{% endblock %}

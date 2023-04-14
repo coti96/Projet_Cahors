@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br>
+<div class="mt-4 container">
+ <h1 class="h3 mb-3 font-weight-normal">Informations  <i class="fa-sharp fa-solid fa-server"></i> </h1>
+
+    <div class="col">    
+              <div class="card bg-light mb-3" style="min-width: 20rem;">
+                      <div class="card-header"> 
+                        Informations détaillées du Serveur 
+                      </div>
+                      <div class="card-body">
+                         <h6 class="card-title">{{serveur.nom}} <i class="fa-sharp fa-solid fa-server"></i> </h6> 
+                          
+                              <p class="card-text">Informations : </p>
+                               <p class="card-text">Adresse ip :  {{serveur.ip}} </p>
+                              <p class="card-text"> Marque {{serveur.marque}} </p>
+                               <p class="card-text">Emplacement {{serveur.emplacement}} </p>
+                                <p class="card-text">Rack {{serveur.rack}} </p>
+                                 <p class="card-text">Date de mise en service {{ serveur.date.format('d-m-Y') }}</p>
+
+                                  <p class="card-text">Documents  
+                                  {% for document in documents %}
+                                   <a href="{{ asset('documents/' ~ document.name) }}">{{ document.name }}</a>
+                                    {% endfor %}
+                                    </p>
+     
+                      </div>
+                </div>
+            </div>
+            
+
+  
+{% endblock %}

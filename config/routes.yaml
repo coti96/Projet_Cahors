@@ -1,0 +1,151 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+home:
+    path: /users/home
+    controller: App\Controller\ProjetController::index
+
+show:
+    path: /edit/show
+    controller: App\Controller\ProjetController::show
+
+showmoreserveur:
+    path: /edit/show/{id?0}
+    controller: App\Controller\ProjetController::showmore
+
+routeurshowmore:
+    path: /edit/showrouteur/{id?0}
+    controller: App\Controller\RouteurController::showmore
+
+commutateurshowmore:
+    path: /edit/showcommutateur/{id?0}
+    controller: App\Controller\CommutateurController::showmore
+
+parefeushowmore:
+    path: /edit/showparefeu/{id?0}
+    controller: App\Controller\PareFeuController::showmore
+
+create:
+    path: /edit/create
+    controller: App\Controller\ProjetController::create
+
+edit:
+    path: /edit/edit/{id?0}
+    controller: App\Controller\ProjetController::create
+
+delete:
+    path: /edit/delete/{id?0}
+    controller: App\Controller\ProjetController::delete
+
+createRouteur:
+    path: /edit/createRouteur
+    controller: App\Controller\RouteurController::createRouteur
+
+editRouteur:
+    path: /edit/editRouteur/{id?0}
+    controller: App\Controller\RouteurController::createRouteur
+
+deleteRouteur:
+    path: /edit/deleteRouteur/{id?0}
+    controller: App\Controller\RouteurController::deleteRouteur
+
+createParefeu:
+    path: /edit/createParefeu
+    controller: App\Controller\PareFeuController::createparefeu
+
+editParefeu:
+    path: /edit/editParefeu/{id?0}
+    controller: App\Controller\PareFeuController::createparefeu
+
+deleteParefeu:
+    path: /edit/deleteParefeu/{id?0}
+    controller: App\Controller\PareFeuController::deleteparefeu    
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+
+inscription:
+    path: /admin/inscription
+    controller: App\Controller\RegistrationController::register
+
+
+users:
+    path: /admin/users
+    controller: App\Controller\AdminController::usersList
+
+editUser:
+    path: /admin/users/edit{id?0}
+    controller: App\Controller\AdminController::editUser
+
+deleteUser:
+    path: /admin/users/delete{id?0}
+    controller: App\Controller\AdminController::deleteUser
+
+contacts:
+    path: /edit/contacts
+    controller: App\Controller\ContactController::contactsList
+
+editcontact:
+    path: /edit/contacts/edit{id?0}
+    controller: App\Controller\ContactController::createContact
+
+deletecontact:
+    path: /edit/contacts/delete{id?0}
+    controller: App\Controller\ContactController::deleteContact
+
+contactinscription:
+    path: /edit/contacts/register
+    controller: App\Controller\ContactController::createContact
+
+mail:
+    path: /edit/contacts/mail{id?0}
+    controller: App\Controller\ContactController::mailtocontact
+
+newdocument:
+    path: /edit/newdocument
+    controller: App\Controller\DocumentsController::new
+
+deletedocument:
+    path: /edit/deletedocument{id?0}
+    controller: App\Controller\ProjetController::deletedoc
+    
+
+showdocument:
+    path: /users/showdocument
+    controller: App\Controller\DocumentsController::show
+
+editdocument:
+    path: /edit/editdocument{id?0}
+    controller: App\Controller\ProjetController::edit
+
+createcommutateur:
+    path: /edit/createcommutateur
+    controller: App\Controller\CommutateurController::create
+
+editcommutateur:
+    path: /edit/editcommutateur{id?0}
+    controller: App\Controller\CommutateurController::create
+
+deletecommutateur:
+    path: /edit/deletecommutateur{id?0}
+    controller: App\Controller\CommutateurController::delete
+
+tree:
+    path: /tree
+    controller: App\Controller\TreeController::buildTree
+
+
+
+       
+
+
+
+  
+
+

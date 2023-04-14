@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Ajouter un document{% endblock %}
+
+
+   
+{% block body %}
+
+<div class="container mt-4">
+<h1 class="h3 mb-3 font-weight-normal">Ajouter un document</h1>
+<p class="text-info">Ajouter un document</p>
+
+{{ form_start(form) }}
+{{ form_end(form) }}
+
+  <a href="{{ path('showdocument') }}">Retourner a la liste des documents</a>
+</div>
+
+
+  
+{% endblock %}

@@ -1,0 +1,20 @@
+
+
+{% block title %}Mon titre{% endblock %}
+
+{% block body %}
+    {# Incluez le fichier Treant.js dans votre vue #}
+    <script src="{{ asset('bundles/app/js/Treant.js') }}"></script>
+
+    {# Créez un div qui servira de conteneur pour l'arbre #}
+    <div id="tree-container"></div>
+    {{ dump(treeData) }}
+{% endblock %}
+
+{% block javascripts %}
+
+
+    {# Utilisez Treant.js pour générer l'arbre #}
+    
+{% endblock %}
+

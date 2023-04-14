@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+          <meta charset='utf-8'>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+        <title> {% block title %}Infrastructure informatique de l'hôpital de Cahors {% endblock %} </title>
+         
+
+         <link rel="stylesheet" href="treant-js/Treant.css">
+         <link rel="stylesheet" href="treant-js/examples/basic-example/basic-example.css">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+         
+         
+         {% block stylesheets %} 
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.1/dist/Zephyr/bootstrap.css">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.1/dist/Zephyr/bootstrap.min.css">
+        {% endblock %} 
+       
+      
+        
+        
+        {% block javascripts %}  
+       
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/locales-all.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/70f98bf25c.js" crossorigin="anonymous"></script>
+         {% endblock %}
+
+    </head>
+       
+{# read and display just one flash message type #}
+{% for message in app.flashes('notice') %}
+<div class="alert alert-dismissible alert-info">
+<div class="flash-notice">
+{{ message }}
+</div> </div> </button>
+{% endfor %}
+
+{# read and display several types of flash messages #}
+{% for label, messages in app.flashes(['success', 'warning']) %}
+    {% for message in messages %}
+      <div class="alert alert-dismissible alert-info">
+  <div class="flash-{{ label }}">
+            {{ message }}
+        </div>  </div> </div> </button>
+    {% endfor %}
+{% endfor %}
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %} <div class="alert alert-dismissible alert-info">
+ 
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>  </div> </button>
+    {% endfor %}
+{% endfor %}
+  
+
+{# Si l'user est un utilisateur, 
+un menu s'affiche avec Dashboard
+Dependance
+Agenda #}
+{% if app.user %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href={{path('home')}}>Gestion informatique</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      
+       <li class="nav-item">
+        <a class="nav-link" href={{path('show')}}> Dashboard  </a>
+      </li>   
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Agenda <i class="fa-solid fa-calendar-days"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href={{path('app_agenda_index')}}>Voir l'agenda </a>
+          <a class="dropdown-item" href={{path('app_agenda_new')}}>Ajouter un nouveau rendez vous </a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={{path('tree')}}> Dependances  </a>
+      </li>
+      {% endif %}
+
+      {# Si l'user est aussi editeur, l'onglet Informatique s'ajoute #}
+      {% if is_granted('ROLE_EDITOR')%}
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Informatique <i class="fa-solid fa-table"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href={{path('create')}}>Ajouter un serveur</a>
+          <a class="dropdown-item" href={{path('createRouteur')}}>Ajouter un routeur</a>
+          <a class="dropdown-item" href={{path('createcommutateur')}}> Ajouter un commutateur</a>
+          <a class="dropdown-item" href={{path('createParefeu')}}> Ajouter un parefeu</a>
+           <a class="dropdown-item" href={{path('newdocument')}}>Ajouter un document</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Contacts <i class="fa-solid fa-address-book"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href={{path('contactinscription')}}>Enregistrer un nouveau contact</a>
+          <a class="dropdown-item" href={{path('contacts')}}>Voir les contacts </a>
+        </div>
+      </li>
+      {% endif %}
+      {# Si l'user est aussi admin, l'onglet  Utilisateur s'ajoute #}
+         {% if is_granted('ROLE_ADMIN') %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Utilisateurs <i class="fa-solid fa-user"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href={{path('inscription')}}>Enregistrer un nouveau utilisateur</a>
+          <a class="dropdown-item" href={{path('users')}}>Liste des utilisateurs</a>
+        </div>
+      </li>
+       {% endif %}
+       
+      
+      
+    
+     
+    </ul>
+  </div>
+</nav>
+
+  
+
+
+
+{% if app.user %}
+            <div class="mb-3">
+            <i class="fa-solid fa-user"> </i> {{ app.user.userIdentifier }}
+         
+            
+            <a href="{{ path('logout') }}"><i class="fa-solid fa-user-large-slash"></i> Me deconnecter</a>
+        </div>
+   
+{% endif %}
+         
+    </body>
+
+    {# read and display just one flash message type #}
+{% for message in app.flashes('notice') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{# read and display several types of flash messages #}
+{% for label, messages in app.flashes(['success', 'warning']) %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+{% block body %}  
+
+
+ 
+
+{% endblock %}

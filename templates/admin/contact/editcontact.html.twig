@@ -1,0 +1,19 @@
+{% extends "base.html.twig"%}
+{% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
+
+
+
+
+{% block title %} 
+Modifier un contact
+{% endblock %}
+
+{% block body %}
+<h1 class="h3 mb-3 font-weight-normal">Modifier un contact</h1>
+<div class="container mt-4">
+<p class="text-info">Modifier les informations d'un contact</p>
+
+{{ form(contactForm) }}
+
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agenda{% endblock %}
+
+{% block body %}
+    <h1>Agenda cc</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ agenda.id }}</td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{{ agenda.start ? agenda.start|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td>{{ agenda.end ? agenda.end|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ agenda.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ agenda.description }}</td>
+            </tr>
+            <tr>
+                <th>BackgroundColor</th>
+                <td>{{ agenda.backgroundColor }}</td>
+            </tr>
+            <tr>
+                <th>Allday</th>
+                <td>{{ agenda.Allday ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_agenda_index') }}">back to list</a>
+
+    <a href="{{ path('app_agenda_edit', {'id': agenda.id}) }}">edit</a>
+
+    {{ include('agenda/_delete_form.html.twig') }}
+{% endblock %}

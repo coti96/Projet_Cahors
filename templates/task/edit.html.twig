@@ -1,0 +1,81 @@
+
+
+
+
+        {% block javascripts %} 
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+
+
+{% endblock %}
+
+{%block title %}
+
+{% if editMode %} Modifier
+{% else %} Ajouter
+{% endif %}
+un Serveur
+{% endblock %}
+
+{% block body %}
+</br>
+
+<h3> {% if editMode %} 
+Modifier
+{% else %} Ajouter
+{% endif %} un Serveur </h3> </div>
+
+<div class="container mt-4">
+<p class="text-info">Ajouter un serveur dans la base de données.</p>
+
+{{ form_start(formServeur) }}
+
+{{ form_widget(formServeur)}}
+    {# Si mode edit on affiche les documents #}
+	{% if editMode %} 
+        <h2>Document</h2>
+        {% for document in documents %}
+            <div>
+              <a href="{{ asset('documents/' ~ document.name) }}">{{ document.name }}</a>
+
+                {# On ajoute un lien permettant de supprimer un document (sera géré en Ajax) #}
+                <a href="{{ path('deletedocument', {id: document.id})}}">Supprimer</a>
+            </div>
+
+
+        {% endfor %}
+    {% endif %}
+
+
+
+{{ form_end(formServeur) }}
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
+    
+</body>
+
+
+
+</div>
+{% endblock %}
+
+
+{% extends 'base.html.twig' %}
+
+{% form_theme 'bootstrap_4_layout.html.twig' %} 
+
+{% block title %}Edit Task{% endblock %}
+
+{% block body %}
+    <h1>Edit Task</h1>
+
+    {{ include('task/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_task_index') }}">back to list</a>
+
+    {{ include('task/_delete_form.html.twig') }}
+{% endblock %}

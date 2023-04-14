@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br>
+<div class="mt-4 container">
+ <h1 class="h3 mb-3 font-weight-normal">Informations  <i class="fa-solid fa-network-wired"></i> </h1>
+
+    <div class="col">    
+              <div class="card bg-light mb-3" style="min-width: 20rem;">
+                      <div class="card-header"> 
+                      Informations détaillées du parefeu
+                      </div>
+                      <div class="card-body">
+                         <h6 class="card-title">{{parefeu.nom}}     <i class="fa-solid fa-network-wired"></i>  </h6> 
+                          
+                              <p class="card-text">Informations : </p>
+                              <p class="card-text"> Marque {{parefeu.editeur}} </p>
+                              <p class="card-text">Adresse IP {{parefeu.ip}} </p>
+                               <p class="card-text">Emplacement {{parefeu.emplacement}} </p>
+                                <p class="card-text">Rack {{parefeu.rack}} </p>
+                                <p class="card-text">Date de mise en service {{ parefeu.date.format('d-m-Y') }}</p>
+                                  <p class="card-text">Documents  
+                                  {% for document in documents %}
+                                   <a href="{{ asset('documents/' ~ document.name) }}">{{ document.name }}</a>
+                                    {% endfor %}
+                                    </p>
+     
+                      </div>
+                </div>
+            </div>
+            
+
+  
+{% endblock %}

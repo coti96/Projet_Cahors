@@ -1,0 +1,28 @@
+{% extends "base.html.twig"%}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+
+
+{%block title %} 
+{% if editMode %} Modifier 
+{% else %} Ajouter 
+{% endif %}
+un commutateur
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+</br><h3> {% if editMode %} Modifier 
+{% else %}  Ajouter 
+{% endif %} un commutateur </h3> 
+
+<p class="text-info">Ajouter un commutateur dans la base de données.</p>
+
+{{ form_start(form)}}
+
+{{ form_widget(form)}}
+
+{{ form_end(form)}}
+
+</div>
+{% endblock %}
